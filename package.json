@@ -1,0 +1,15 @@
+{
+  "name": "install-r",
+  "version": "1.0.0",
+  "description": "Install R",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "install",
+    "R"
+  ],
+  "author": "Gábor Csárdi",
+  "license": "ISC"
+}
