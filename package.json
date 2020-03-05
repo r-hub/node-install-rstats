@@ -4,12 +4,15 @@
   "description": "Install R",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava"
   },
   "keywords": [
     "install",
     "R"
   ],
   "author": "Gábor Csárdi",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "ava": "^3.5.0"
+  }
 }
