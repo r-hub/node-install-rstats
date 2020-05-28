@@ -24,7 +24,9 @@ function install_pkg() {
     for pkg in "$@"
     do
         echo "Installing ${pkg}"
+        forget_r_packages
         installer -pkg "$pkg" -target /
+        forget_r_packages
     done
 }
 
@@ -108,10 +110,8 @@ function make_orthogonal() {
 
 function main() {
     set -e
-    forget_r_packages
     install_pkg "$@"
     make_orthogonal
-    forget_r_packages
     update_access_rights
     update_quick_links
 }
