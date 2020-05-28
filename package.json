@@ -4,7 +4,7 @@
   "description": "Install R",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "nyc ava"
   },
   "keywords": [
     "install",
@@ -13,7 +13,8 @@
   "author": "Gábor Csárdi",
   "license": "ISC",
   "devDependencies": {
-    "ava": "^3.5.1"
+    "ava": "^3.5.1",
+    "nyc": "^15.0.1"
   },
   "dependencies": {
     "array-unique": "^0.3.2",
