@@ -1,7 +1,7 @@
 {
   "name": "install-r",
   "version": "1.0.0",
-  "description": "Install R",
+  "description": "Install R versions",
   "main": "index.js",
   "scripts": {
     "test": "nyc ava"
@@ -18,11 +18,15 @@
   },
   "dependencies": {
     "array-unique": "^0.3.2",
+    "meow": "^7.0.1",
     "pretty-bytes": "^5.3.0",
     "rversions": "^1.0.2",
     "semver": "^7.1.3",
     "sudo-prompt": "^9.1.1",
     "tail": "^2.0.3",
     "temp-dir": "^2.0.0"
+  },
+  "bin": {
+    "install-r": "cli.js"
   }
 }
