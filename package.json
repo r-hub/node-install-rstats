@@ -19,6 +19,7 @@
   "dependencies": {
     "array-unique": "^0.3.2",
     "meow": "^7.0.1",
+    "ora": "^4.0.4",
     "pretty-bytes": "^5.3.0",
     "rversions": "^1.0.2",
     "semver": "^7.1.3",
