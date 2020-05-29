@@ -1,0 +1,57 @@
+
+# install-r
+
+> Install various versions of R on macOS
+
+## Features
+
+* Downloads and installs multiple R versions, with a single command.
+* Supports symbolic version names: `release`, `devel` and `oldrel`.
+* Patches R to allow running multiple R versions at the same time.
+* Adds symlinks to start a certain R version: e.g. `R-4.0`.
+* Updates access rights of to forbid installing packages into the
+  system R library.
+
+## Install
+
+```
+$ npm install -g install-r
+```
+
+## Usage
+
+### Command line
+
+```sh
+install-r [rversion1] [rversion2] ...
+```
+
+### From node.js
+
+Use the `install()` function and supply the desired R versions in an
+array. If no version is given, it installs the latest R release.
+
+Example:
+
+```js
+const installr = require('installr');
+
+(async () => {
+    await installr.install(['3.6', '4.0', 'devel'])
+})();
+```
+
+### Supported R versions
+
+* `release` is the current R release,
+* `oldrel` is the latest release of the previous minor branch,
+* `devel` is a development snapshot,
+* `x.y` is the latest release of the x.y branch,
+* `x.y.z` is version x.y.z.
+
+## License
+
+ISC @ R Consortium
+
+This repo is part of the R-hub project, supported by
+the R Consortium.
