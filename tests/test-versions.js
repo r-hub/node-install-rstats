@@ -41,9 +41,9 @@ test('resolve_version', async t => {
 });
 
 test('url_macos', t => {
-    t.is(
+    t.regex(
         url_macos('devel'),
-        'http://mac.r-project.org/el-capitan/R-devel/R-devel-el-capitan-signed.pkg'
+        /^https:\/\//
     )
     t.is(
         url_macos('3.2.5'),
