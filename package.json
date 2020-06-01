@@ -1,5 +1,5 @@
 {
-  "name": "install-r",
+  "name": "install-rstats",
   "version": "1.0.0",
   "description": "Install R versions",
   "main": "index.js",
@@ -28,6 +28,6 @@
     "temp-dir": "^2.0.0"
   },
   "bin": {
-    "install-r": "install-r.js"
+    "install-rstats": "install-rstats.js"
   }
 }

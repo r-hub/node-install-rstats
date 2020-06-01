@@ -5,7 +5,7 @@ const installr = require('.');
 
 const cli = meow(`
 	Usage
-	  $ install-r [rversion1] [rversion2] ...
+	  $ install-rstats [rversion1] [rversion2] ...
 
 	Supported R versions:
 	  'release':   the current R release

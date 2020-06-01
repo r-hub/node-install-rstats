@@ -1,5 +1,5 @@
 
-# install-r
+# install-rstats
 
 > Install various versions of R on macOS
 
@@ -15,7 +15,7 @@
 ## Install
 
 ```
-$ npm install -g install-r
+$ npm install -g install-rstats
 ```
 
 ## Usage
@@ -23,15 +23,15 @@ $ npm install -g install-r
 ### Command line
 
 ```sh
-install-r [rversion1] [rversion2] ...
+install-rstats [rversion1] [rversion2] ...
 ```
 
-If you start `install-r` wihout `sudo`, it will ask for your password
+If you start `install-rstats` wihout `sudo`, it will ask for your password
 (once) in a dialog box. If you want to avoid that, use `sudo` at the
 line:
 
 ```sh
-sudo install-r [rversion1] [rversion2] ...
+sudo install-rstats [rversion1] [rversion2] ...
 ```
 
 ### From node.js
@@ -42,7 +42,7 @@ array. If no version is given, it installs the latest R release.
 Example:
 
 ```js
-const installr = require('installr');
+const installr = require('install-rstats');
 
 (async () => {
     await installr.install(['3.6', '4.0', 'devel'])
