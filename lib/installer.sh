@@ -105,6 +105,38 @@ function make_orthogonal() {
             mv "${rfile}.new" "$rfile"
             chmod +x "$rfile"
         fi
+
+        local rfile="${base}${ver}/Resources/etc/Renviron"
+        if grep -q 'R.framework/Resources' "$rfile"; then
+            cat "$rfile" |
+                sed 's/R.framework\/Resources/R.framework\/Versions\/'$ver'\/Resources/' \
+                    > "${rfile}.new"
+            mv "${rfile}.new" "$rfile"
+        fi
+
+        local rfile="${base}${ver}/Resources/fontconfig/fonts/fonts.conf"
+        if grep -q 'R.framework/Resources' "$rfile"; then
+            cat "$rfile" |
+                sed 's/R.framework\/Resources/R.framework\/Versions\/'$ver'\/Resources/' \
+                    > "${rfile}.new"
+            mv "${rfile}.new" "$rfile"
+        fi
+
+        local rfile="${base}${ver}/Resources/etc/Makeconf"
+        if grep -q 'F/Library/Frameworks/R\.framework/\.\.' "$rfile"; then
+            cat "$rfile" |
+                sed 's/-F\/Library\/Frameworks\/R\.framework\/\.\./-F\/Library\/Frameworks\/R.framework\/Versions\/'$ver'/' \
+                    > "${rfile}.new"
+            mv "${rfile}.new" "$rfile"
+        fi
+
+        local fake="${base}${ver}/R.framework"
+        mkdir -p "$fake"
+        ln -s ../Headers "$fake/Headers" 2> /dev/null || true
+        ln -s ../Resources/lib "$fake/Libraries" 2> /dev/null || true
+        ln -s ../PrivateHeaders "$fake/PrivateHeaders" 2> /dev/null || true
+        ln -s ../R "$fake/R" 2> /dev/null || true
+        ln -s ../Resources "$fake/Resources" 2> /dev/null || true
     done
 }
 
