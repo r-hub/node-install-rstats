@@ -26,6 +26,14 @@ $ npm install -g install-r
 install-r [rversion1] [rversion2] ...
 ```
 
+If you start `install-r` wihout `sudo`, it will ask for your password
+(once) in a dialog box. If you want to avoid that, use `sudo` at the
+line:
+
+```sh
+sudo install-r [rversion1] [rversion2] ...
+```
+
 ### From node.js
 
 Use the `install()` function and supply the desired R versions in an
