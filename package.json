@@ -1,8 +1,9 @@
 {
   "name": "install-rstats",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Install R versions",
   "main": "index.js",
+  "repository": "r-hub/node-install-rstats",
   "scripts": {
     "test": "nyc ava"
   },
@@ -10,6 +11,11 @@
     "install",
     "R"
   ],
+  "author": {
+    "name": "Gábor Csárdi",
+    "email": "csardi.gabor@gmail.com",
+    "url": "https://github.com/gaborcsardi"
+  },
   "author": "Gábor Csárdi",
   "license": "ISC",
   "devDependencies": {
