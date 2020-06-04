@@ -11,11 +11,6 @@
     "install",
     "R"
   ],
-  "author": {
-    "name": "Gábor Csárdi",
-    "email": "csardi.gabor@gmail.com",
-    "url": "https://github.com/gaborcsardi"
-  },
   "author": "Gábor Csárdi",
   "license": "ISC",
   "devDependencies": {
@@ -24,6 +19,7 @@
   },
   "dependencies": {
     "array-unique": "^0.3.2",
+    "got": "^11.2.0",
     "meow": "^7.0.1",
     "ora": "^4.0.4",
     "pretty-bytes": "^5.3.0",
