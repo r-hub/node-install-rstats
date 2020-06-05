@@ -25,9 +25,9 @@ test('download_maybe', async t => {
     // file name, then we remove the file and download it for sure.
     const url = srv.url + '/get?' + process.pid;
     const filename = await download_maybe(url);
-    await unlink(filename)
+    await unlink(filename);
     await download_maybe(url);
-    t.is(path.basename(filename), 'get?' + process.pid);
+    t.is(path.basename(filename), 'get-' + process.pid);
     t.notThrows(async () => await access(filename));
 
     await writeFile(filename, 'foobar');
