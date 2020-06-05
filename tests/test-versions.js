@@ -1,11 +1,35 @@
 
+const create_test_server = require('create-test-server');
+const server = create_test_server();
+
 const test = require('ava');
-const resolve_version = require('../lib/resolve-version');
 const url_macos = require('../lib/url-macos');
 
 const semver = require('semver');
 
 test('resolve_version', async t => {
+
+    const srv = await server;
+    srv.get(
+        ['/r-release', '/r-release-macos', '/r-release-win'],
+        function(req, res) { res.send({ version: '4.0.0'}); }
+    );
+    srv.get('/r-oldrel', function(req, res) {
+        res.send({ version: '3.6.3' });
+    });
+    srv.get('/r-versions', function(req, res) {
+        res.send([
+            { version: '3.2.4' },
+            { version: '3.2.5' },
+            { version: '3.3.2' },
+            { version: '3.3.3' },
+            { version: '3.6.2' }
+        ]);
+    });
+    process.env.R_VERSIONS_API_URL = srv.url + '/';
+
+    const resolve_version = require('../lib/resolve-version');
+
     // 'devel' is 'devel'
     t.is(await resolve_version('devel'), 'devel');
 
@@ -13,9 +37,22 @@ test('resolve_version', async t => {
     const r362 = await resolve_version('3.6.2');
     t.is(r362, '3.6.2');
 
+    // Default is release
+    const rdef = await resolve_version();
+    const rdef2 = await resolve_version('release');
+    t.is(rdef, rdef2);
+
     // Errors if unknown
     const err = await t.throwsAsync(resolve_version('0.0.1'));
     t.is(err.message, 'Unknown R version: 0.0.1');
+
+    // Errors if unknown
+    const err2 = await t.throwsAsync(resolve_version('0.1'));
+    t.is(err2.message, 'Unknown minor R version: 0.1');
+
+    // Errors if unknown OS
+    const err3 = await t.throwsAsync(resolve_version('release', 'nix'));
+    t.is(err3.message, 'Unknown OS in `resolve_version()`: nix');
 
     // Resolves 'release' correctly
     const rls = await resolve_version('release');
