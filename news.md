@@ -1,5 +1,9 @@
 
-# 1.0.1 (unreleased)
+# 1.1.0 (unreleased)
+
+* install-rstats now supports Windows as well.
+
+# 1.0.1
 
 * For robustness, now we use the https://api.r-hub.io/rversions web
   service to resolve R versions, with a fallback to the R servers.
