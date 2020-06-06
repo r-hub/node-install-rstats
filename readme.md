@@ -1,16 +1,16 @@
 
 # install-rstats
 
-> Install various versions of R on macOS
+> Install various versions of R on macOS and Windows
 
 ## Features
 
 * Downloads and installs multiple R versions, with a single command.
 * Supports symbolic version names: `release`, `devel` and `oldrel`.
-* Patches R to allow running multiple R versions at the same time.
-* Adds symlinks to start a certain R version: e.g. `R-4.0`.
+* Patches R to allow running multiple R versions at the same time. (macOS)
+* Adds symlinks to start a certain R version: e.g. `R-4.0`. (macOS)
 * Updates access rights of to forbid installing packages into the
-  system R library.
+  system R library. (macOS)
 
 ## Install
 
@@ -26,9 +26,9 @@ $ npm install -g install-rstats
 install-rstats [rversion1] [rversion2] ...
 ```
 
-If you start `install-rstats` wihout `sudo`, it will ask for your password
-(once) in a dialog box. If you want to avoid that, use `sudo` at the
-line:
+On macOS, if you start `install-rstats` wihout `sudo`, it will ask for
+your password (once) in a dialog box. If you want to avoid that, use
+ `sudo` at the line:
 
 ```sh
 sudo install-rstats [rversion1] [rversion2] ...
