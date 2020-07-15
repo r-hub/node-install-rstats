@@ -87,7 +87,7 @@ function forget_r_packages() {
     local pkgs=$(pkgutil --pkgs | grep -i r-project | grep -v clang)
     for pkg in $pkgs
     do
-        pkgutil --forget "$pkg"
+        pkgutil --forget "$pkg" || true
     done
 }
 
