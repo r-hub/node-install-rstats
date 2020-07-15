@@ -1,7 +1,9 @@
 
-# 1.1.0 (unreleased)
+# 1.1.0
 
 * install-rstats now supports Windows as well.
+
+* The installer now creates all user library directories as well.
 
 # 1.0.1
 
