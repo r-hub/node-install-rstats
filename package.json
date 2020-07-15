@@ -35,5 +35,13 @@
   },
   "bin": {
     "install-rstats": "install-rstats.js"
-  }
+  },
+  "files": [
+    "index.js",
+    "install-rstats.js",
+    "news.md",
+    "readme.md",
+    "package.json",
+    "lib"
+  ]
 }
