@@ -3,6 +3,9 @@
 
 * Fix macOS R-devel installation, we now use the installer from R-hub.
 
+* Fix a potential crash, when using install-rstats after a manual
+  installation.
+
 # 1.2.0
 
 * On macOS, `install-rstats` now does not ask for the password, if the
