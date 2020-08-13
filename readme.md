@@ -8,10 +8,10 @@
 * Downloads and installs multiple R versions, with a single command.
 * Supports symbolic version names: `release`, `devel` and `oldrel`.
 * Patches R to allow running multiple R versions at the same time. (macOS, not needed for Windows)
-* Adds symlinks to start a certain R version: e.g. `R-4.0`. (macOS)
+* Adds symlinks/shortcuts to start a certain R version: e.g. `R-4.0`.
 * Updates access rights of to forbid installing packages into the
   system R library. (macOS, not needed for Windows)
-* Creates user package libraries (macOS)
+* Creates user package libraries.
 
 ## Install
 
