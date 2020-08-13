@@ -62,6 +62,35 @@ SETX dummy dummy >nul
 IF %errorlevel% NEQ 0 EXIT /b %errorlevel%
 
 REM ----------------------------------------------------------------
+REM Get the R user's home directory, we'll use this to create
+REM user package libraries. This is the same lookup that R does,
+REM see the R for Windows FAQ, and also ?Rconsole.
+REM ----------------------------------------------------------------
+
+REM If R_USER is set, we use that
+REM It could be set in .Renviron as well? Then we'll miss it here :(
+
+SET myhome=%R_USER%
+
+REM Otherwise use HOME, if set.
+
+IF [%myhome%] == [] (
+    SET myhome=%HOME%
+)
+
+REM Otherwise look up the home in the registry
+
+IF [%myhome%] == [] (
+    SET "homekey=HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+    FOR /F "tokens=3" %%A IN (
+        'REG QUERY "%homekey%" /v "Personal"') DO (
+            SET myhome=%%A
+    )
+)
+
+echo Creating user libraries in %myhome%.
+
+REM ----------------------------------------------------------------
 REM Get the installed R versions and locations from the registry
 REM ----------------------------------------------------------------
 
@@ -114,12 +143,6 @@ for %%a in (%rversions%) do (
     for /F "tokens=1,2 delims=." %%b in ("%%a") do call :shcut %%a %%b.%%c
 )
 
-REM ----------------------------------------------------------------
-REM Remove shortcuts that are not needed any more
-REM ----------------------------------------------------------------
-
-REM TODO
-
 goto End
 
 REM ----------------------------------------------------------------
@@ -141,6 +164,9 @@ FOR /F "usebackq skip=2 tokens=1,2*" %%A IN (
 
 echo Adding shortcut: %linkdir%\R-%major%.bat -^> %installpath%\bin\R
 echo @"%installpath%\bin\R" %%* > "%linkdir%\R-%major%.bat"
+
+mkdir %myhome%\R\win-library\%major% 2>nul
+
 goto :eof
 
 :End
