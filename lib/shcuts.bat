@@ -66,12 +66,29 @@ REM Get the installed R versions and locations from the registry
 REM ----------------------------------------------------------------
 
 SET rkey=HKEY_LOCAL_MACHINE\SOFTWARE\R-core\R
+
+REM First we get the pre-release versions. These are added first,
+REM so they will be overwritten by the proper releases.
+
+SET devrversions=
+FOR /F "tokens=1 delims=" %%a in (
+    'REG QUERY "%rkey%" /f "*" /k ^|
+        findstr /v /c:"End of search:" ^| sort ^| findstr /r "Pre-release$" ') DO (
+            for /F "tokens=5 delims=\" %%b in ("%%a") do (
+            CALL SET "devrversions=%%devrversions%%;%%b"
+        )
+    )
+)
+
+REM Then we add all the releases, in the right order, so a later release will
+REM overwrite an earlier one, and e.g. R-4.0 will use R 4.0.2, not R 4.0.1.
+
 SET rversions=
 FOR /F "tokens=1 delims=" %%a in (
     'REG QUERY "%rkey%" /f "*" /k ^|
         findstr /v /c:"End of search:" ^| sort ^| findstr /r "[0123456789]$" ') DO (
             for /F "tokens=5 delims=\" %%b in ("%%a") do (
-            CALL SET "rversions=%%rversions%% %%b"
+            CALL SET "rversions=%%rversions%%;%%b"
         )
     )
 )
@@ -80,8 +97,15 @@ REM ----------------------------------------------------------------
 REM Create a shortcut for every version
 REM ----------------------------------------------------------------
 
+REM Need to replace spaces, temporarily, as FOR breaks on them
+SET devrversions2=!devrversions: =_!
+
+for %%a in (%devrversions2%) do (
+    for /F "tokens=1,2 delims=." %%b in ("%%a") do call :shcut %%a %%b.%%c
+)
+
 for %%a in (%rversions%) do (
-   for /F "tokens=1,2 delims=." %%b in ("%%a") do call :shcut %%a %%b.%%c
+    for /F "tokens=1,2 delims=." %%b in ("%%a") do call :shcut %%a %%b.%%c
 )
 
 REM ----------------------------------------------------------------
@@ -100,13 +124,17 @@ REM Create a shortcut, %1 is the full version number, %2 is the major
 REM version number
 
 :shcut
+SET oldver=%1
+SET ver=!oldver:_= !
+SET major=%2
+
 FOR /F "usebackq skip=2 tokens=1,2*" %%A IN (
-    `REG QUERY "%rkey%\%1" /v InstallPath 2^>nul`) DO (
+    `REG QUERY "%rkey%\%ver%" /v InstallPath 2^>nul`) DO (
         set "installpath=%%C"
 )
 
-echo Adding shortcut: %linkdir%\R-%2.bat -^> %installpath%\bin\R
-echo @"%installpath%\bin\R" %%* > "%linkdir%\R-%2.bat"
+echo Adding shortcut: %linkdir%\R-%major%.bat -^> %installpath%\bin\R
+echo @"%installpath%\bin\R" %%* > "%linkdir%\R-%major%.bat"
 goto :eof
 
 :End
