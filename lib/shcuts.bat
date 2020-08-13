@@ -165,7 +165,11 @@ FOR /F "usebackq skip=2 tokens=1,2*" %%A IN (
 echo Adding shortcut: %linkdir%\R-%major%.bat -^> %installpath%\bin\R
 echo @"%installpath%\bin\R" %%* > "%linkdir%\R-%major%.bat"
 
-mkdir %myhome%\R\win-library\%major% 2>nul
+REM https://stackoverflow.com/a/4165472/604364
+SET "mylibdir=%myhome%\R\win-library\%major%"
+IF NOT EXIST %mylibdir%\NUL (
+    mkdir %mylibdir%
+)
 
 goto :eof
 
