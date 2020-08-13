@@ -3,6 +3,8 @@
 
 * Create shortcuts to all installed R versions on Windows as well.
 
+* Create all user library directories on Windows as well.
+
 # 1.2.1
 
 * Fix macOS R-devel installation, we now use the installer from R-hub.
