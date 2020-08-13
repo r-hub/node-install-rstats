@@ -1,4 +1,8 @@
 
+# 1.3.0 (development version)
+
+* Create shortcuts to all installed R versions on Windows as well.
+
 # 1.2.1
 
 * Fix macOS R-devel installation, we now use the installer from R-hub.
