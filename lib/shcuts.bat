@@ -97,6 +97,12 @@ REM ----------------------------------------------------------------
 REM Create a shortcut for every version
 REM ----------------------------------------------------------------
 
+REM First we remove all shortcuts, so we can re-populate them.
+REM It would be better to remove selectively, in case the script does not
+REM run to completion...
+
+del /f "%linkdir%\R-*.bat"
+
 REM Need to replace spaces, temporarily, as FOR breaks on them
 SET devrversions2=!devrversions: =_!
 
