@@ -5,6 +5,9 @@
 
 * Create all user library directories on Windows as well.
 
+* Automatically install the required Rtools version on Windows, if it is
+  not installed already, and set it up correctly.
+
 # 1.2.1
 
 * Fix macOS R-devel installation, we now use the installer from R-hub.

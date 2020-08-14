@@ -149,26 +149,36 @@ REM ----------------------------------------------------------------
 REM Functions
 REM ----------------------------------------------------------------
 
-REM Create a shortcut, %1 is the full version number, %2 is the major
+REM Create a shortcut, %1 is the full version number, %2 is the minor
 REM version number
 
 :shcut
 SET oldver=%1
 SET ver=!oldver:_= !
-SET major=%2
+SET minor=%2
 
 FOR /F "usebackq skip=2 tokens=1,2*" %%A IN (
     `REG QUERY "%rkey%\%ver%" /v InstallPath 2^>nul`) DO (
         set "installpath=%%C"
 )
 
-echo Adding shortcut: %linkdir%\R-%major%.bat -^> %installpath%\bin\R
-echo @"%installpath%\bin\R" %%* > "%linkdir%\R-%major%.bat"
+echo Adding shortcut: %linkdir%\R-%minor%.bat -^> %installpath%\bin\R
+echo @"%installpath%\bin\R" %%* > "%linkdir%\R-%minor%.bat"
 
+REM Create library directory for this version
 REM https://stackoverflow.com/a/4165472/604364
-SET "mylibdir=%myhome%\R\win-library\%major%"
+SET "mylibdir=%myhome%\R\win-library\%minor%"
 IF NOT EXIST %mylibdir%\NUL (
     mkdir %mylibdir%
+)
+
+REM Create Renviron.site file, to adjust PATH for Rtools
+REM TODO: Rtools directory is hardcoded.
+SET "renv=%installpath%\etc\Renviron.site"
+IF "%minor:~0,1%" == "3" (
+    echo PATH="C:\Rtools\bin;${PATH}" > "%renv%"
+) ELSE (
+    echo PATH="${RTOOLS40_HOME}\usr\bin;${PATH}" > "%renv%"
 )
 
 goto :eof
