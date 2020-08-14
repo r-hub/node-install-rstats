@@ -7,7 +7,7 @@
 
 * Downloads and installs multiple R versions, with a single command.
 * Supports symbolic version names: `release`, `devel` and `oldrel`.
-* On Windows, it installs the correct Rtools versions (if thet are not
+* On Windows, it installs the correct Rtools versions (if they are not
   installed already), and sets them up.
 * Patches R to allow running multiple R versions at the same time.
   (macOS, not needed for Windows)
