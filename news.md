@@ -1,5 +1,5 @@
 
-# 1.3.0 (development version)
+# 1.3.0
 
 * Create shortcuts to all installed R versions on Windows as well.
 
