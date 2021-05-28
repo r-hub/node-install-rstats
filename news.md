@@ -1,7 +1,11 @@
 
-# devel
+# 1.3.4
 
 * Create shortcuts for i386 versions on Windows.
+
+# 1.3.3
+
+* Fix macOS URLs for R-4.1.0.
 
 # 1.3.2
 
