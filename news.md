@@ -1,4 +1,8 @@
 
+# devel
+
+* Create shortcuts for i386 versions on Windows.
+
 # 1.3.2
 
 * Update dependencies, in particular, use newer rversions package
