@@ -1,4 +1,6 @@
 
+# This project is now archived in favor of https://github.com/r-lib/rig
+
 # install-rstats
 
 > Install various versions of R on macOS and Windows
